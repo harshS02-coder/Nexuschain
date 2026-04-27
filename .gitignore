@@ -1,0 +1,48 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+db/migrations/*.sql
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Build outputs
+dist/
+build/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Logs
+*.log
+logs/
+
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Vite
+.vite/
+
+# IDE
+.vscode/
+.idea/
+
+# Drizzle
+drizzle/
+
+# Seed file (optional, remove if you want it in repo)
+seed.ts
+
+# Redis dump
+dump.rdb
