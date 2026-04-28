@@ -48,7 +48,7 @@ COPY --from=build /app/dist ./dist
 
 # Copy required runtime files
 COPY package.json ./
-COPY drizzle.config.js ./
+COPY drizzle.config.ts ./
 COPY db ./db
 
 # Expose port
