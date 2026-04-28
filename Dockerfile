@@ -20,6 +20,7 @@
 
 
 # ---------- Base ----------
+# ---------- Base ----------
 FROM node:20-alpine AS base
 WORKDIR /app
 
@@ -31,27 +32,27 @@ RUN npm ci --prefer-offline --no-audit
 # ---------- Build ----------
 FROM deps AS build
 COPY . .
+
+# Build frontend + backend (your custom script)
 RUN npm run build
 
 # ---------- Production ----------
 FROM node:20-alpine AS production
 WORKDIR /app
 
-# Copy runtime dependencies
+# Copy dependencies
 COPY --from=deps /app/node_modules ./node_modules
 
-# Copy built app
+# Copy built output
 COPY --from=build /app/dist ./dist
 
-# Copy package.json (needed for scripts)
+# Copy required runtime files
 COPY package.json ./
-
-# 🔥 Copy Drizzle config + schema (REQUIRED for db:push)
 COPY drizzle.config.js ./
 COPY db ./db
 
 # Expose port
 EXPOSE 3000
 
-# Start: push DB schema then run server
+# 🔥 Run DB sync then start server
 CMD ["sh", "-c", "npm run db:push && npm start"]
