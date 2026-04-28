@@ -1,6 +1,6 @@
 import * as jose from "jose";
 import * as cookie from "cookie";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import type { Context } from "hono";
 import { setCookie } from "hono/cookie";
 import { env } from "./lib/env";
