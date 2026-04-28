@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: nexuschain
+    runtime: docker
+    plan: standard
+    region: oregon
+    
+    dockerfilePath: ./Dockerfile
+    dockerContext: ./
+    
+    # Environment variables - set these in Render dashboard
+    # DATABASE_URL - Your MySQL database connection string
+    # JWT_SECRET - Your JWT secret key
+    # OWNER_EMAIL - Admin email
+    
+    envVars:
+      - key: NODE_ENV
+        value: production
+    
+    # Port configuration
+    port: 3000
+    
+    # Health check
+    healthCheckPath: /
+    
+    # Scaling
+    numInstances: 1
+    
+    # Build command runs npm run build
+    # Start command runs npm start (which is NODE_ENV=production node dist/boot.js)
